@@ -512,6 +512,33 @@ export default function VaultControls(props) {
     dispatch(depositPickleSLPInFarm(payload));
   };
 
+  const giftDeposit = () => {
+    const giftAddress = prompt(
+      'Provide an ethereum address you would like to gift a deposit to',
+      '0x...',
+    );
+    plausible('gift-deposit', {
+      props: {
+        vault: vault.address,
+        token: token.address,
+        amount: depositGweiAmount,
+        zap: false,
+        giftAddress,
+      },
+    });
+    dispatch(
+      depositToVault({
+        vaultContract,
+        tokenContract,
+        depositAmount: depositGweiAmount,
+        decimals,
+        pureEthereum,
+        hasAllowance: vault.hasAllowance,
+        giftAddress,
+      }),
+    );
+  };
+
   const deposit = () => {
     plausible('deposit', {
       props: {
@@ -1140,6 +1167,27 @@ export default function VaultControls(props) {
                       enabledTooltipText={approvalExplainer}
                     />
                   </Box>
+                  {depositHasBeenApproved &&
+                  !willZapIn &&
+                  vault.type === 'v2' ? (
+                    <Box width={isScreenMd ? '190px' : '100%'} ml={5}>
+                      <ActionButton
+                        disabled={
+                          !vaultContract || !tokenContract || !!depositsDisabled
+                        }
+                        handler={() => giftDeposit()}
+                        text="Gift Deposit"
+                        title="Gift a deposit to a friend"
+                        showTooltipWhenDisabled
+                        disabledTooltipText={
+                          depositsDisabled ||
+                          'Connect your wallet to deposit into vault'
+                        }
+                        showTooltipWhenEnabled={!depositHasBeenApproved}
+                        enabledTooltipText={approvalExplainer}
+                      />
+                    </Box>
+                  ) : null}
                 </ButtonGroup>
               </Box>
               {zapperError &&

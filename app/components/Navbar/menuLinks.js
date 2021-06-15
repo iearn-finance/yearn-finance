@@ -11,43 +11,6 @@ export const menuLinks = {
       description: '',
     },
   ],
-  // protect: {
-  //  href: '/cover',
-  //  title: 'Protect',
-  //  description: '',
-  //},
-  // earn: {
-  //   href: 'https://yearn.finance/earn',
-  //   title: 'yUSD',
-  //   description: 'Stable coin index',
-  // },
-  // products: [
-  //   {
-  //     href: '/vaults',
-  //     title: 'yVaults',
-  //     description: 'Deposit and earn',
-  //   },
-  //   {
-  //     href: '/cover',
-  //     title: 'yCover',
-  //     description: 'Cover smart contract risk',
-  //   },
-  //   {
-  //     href: 'https://yearn.finance/earn',
-  //     title: 'yUSD',
-  //     description: 'Stable coin index',
-  //   },
-  //   {
-  //     href: 'https://yearn.finance/zap',
-  //     title: 'Zap',
-  //     description: 'Zap in and out of the pools',
-  //   },
-  // ],
-  // stats: {
-  //   href: 'https://yearn.finance/stats',
-  //   title: 'Stats',
-  //   description: "Get a quick glance at how yearn's vaults are performing",
-  // },
   gov: [
     {
       href: 'https://gov.yearn.finance/',
